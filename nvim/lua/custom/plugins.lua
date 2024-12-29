@@ -25,13 +25,13 @@ local plugins = {
       require("core.utils").load_mappings("dap")
     end
   },
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     return require "custom.configs.null-ls"
-  --   end,
-  -- },
+  {
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.null-ls"
+    end,
+  },
 
   --nerd glyph
   -- Lazy
@@ -94,6 +94,8 @@ local plugins = {
         "js-debug-adapter",
         -- "prettier",
         "typescript-language-server",
+        "ts_ls",
+        "intelephense",
         "html-lsp",
         "css-lsp",
         "tailwindcss-language-server",
@@ -108,5 +110,22 @@ local plugins = {
       require "custom.configs.lspconfig"
     end,
   },
+  {
+    "windwp/nvim-ts-autotag",
+  opts = {
+    -- Defaults
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = false -- Auto close on trailing </
+  },
+  -- Also override individual filetype configs, these take priority.
+  -- Empty by default, useful if one of the "opts" global settings
+  -- doesn't work well in a specific filetype
+  per_filetype = {
+    ["html"] = {
+      enable_close = true
+    }
+  }
+  }
 }
 return plugins
