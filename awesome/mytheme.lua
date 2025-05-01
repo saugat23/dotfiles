@@ -2,33 +2,35 @@
 -- Default awesome theme --
 ---------------------------
 
-local theme_assets                              = require("beautiful.theme_assets")
-local xresources                                = require("beautiful.xresources")
-local dpi                                       = xresources.apply_dpi
+local theme_assets  = require("beautiful.theme_assets")
+local xresources    = require("beautiful.xresources")
+local dpi           = xresources.apply_dpi
 
-local gfs                                       = require("gears.filesystem")
-local themes_path                               = gfs.get_themes_dir()
+local gfs           = require("gears.filesystem")
+local themes_path   = gfs.get_themes_dir()
 
-local theme                                     = {}
+local theme         = {}
 
-theme.font                                      = "Fira Code 10"
+theme.font          = "Fira Code 10"
 
-theme.bg_normal                                 = "#151515"
-theme.bg_focus                                  = "#3f3f3f"
-theme.bg_urgent                                 = "#e54f5d"
-theme.bg_minimize                               = "#444444"
-theme.bg_systray                                = theme.bg_normal
+theme.bg_normal     = "#151515"
+theme.bg_focus      = "#3f3f3f"
+theme.bg_urgent     = "#e54f5d"
+theme.bg_minimize   = "#444444"
+theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal                                 = "#ffffff"
-theme.fg_focus                                  = "#ffffff"
-theme.fg_urgent                                 = "#ffffff"
-theme.fg_minimize                               = "#ffffff"
+theme.fg_normal     = "#ffffff"
+theme.fg_focus      = "#ffffff"
+theme.fg_urgent     = "#ffffff"
+theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap                               = dpi(5)
-theme.border_width                              = dpi(2)
-theme.border_normal                             = "#fe8019"
-theme.border_focus                              = theme.border_normal
-theme.border_marked                             = theme.border_normal
+theme.useless_gap   = dpi(5)
+theme.border_width  = dpi(2)
+theme.border_normal = "#fe8019"
+theme.border_focus  = theme.border_normal
+theme.border_marked = theme.border_normal
+theme.bg_systray    = "#C4A484"
+
 
 -- There are other variable sets
 -- overriding the default one when

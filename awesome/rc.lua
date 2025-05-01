@@ -22,6 +22,7 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 require("awful.hotkeys_popup.keys")
 
 --drawing wallpaper
+awful.spawn.once("xfce4-clipman")
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell([[
   if pactl list sinks | grep -A10 "$(pactl get-default-sink)" | grep -q "Active Port:.*headphones"; then
@@ -233,10 +234,10 @@ awful.screen.connect_for_each_screen(function(s)
 
   --theming the wibar
   local gruvbox = {
-    red    = "#cc3d28", -- Original: #fb4934
-    green  = "#8a9a1b", -- Original: #b8bb26
-    yellow = "#d19a20", -- Original: #fabd2f
-    blue   = "#5d8c84", -- Original: #83a598
+    red    = "#e06c75", -- Original: #fb4934
+    green  = "#98c379", -- Original: #b8bb26
+    yellow = "#e5c07b", -- Original: #fabd2f
+    blue   = "#61afef", -- Original: #83a598
     purple = "#b56d85", -- Original: #d3869b
     aqua   = "#6a9b5d", -- Original: #8ec07c
     orange = "#d16615"  -- Original: #fe8019
@@ -250,6 +251,7 @@ awful.screen.connect_for_each_screen(function(s)
         right  = 8,
         widget = wibox.container.margin
       },
+      fg     = "#000000",
       bg     = bg_color,
       shape  = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, 4)
@@ -269,19 +271,19 @@ awful.screen.connect_for_each_screen(function(s)
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
-    {             -- Right widgets
+    {             -- Right widgetso
       layout = wibox.layout.fixed.horizontal,
-      style_widget(cpu_widget, gruvbox.yellow),
+      style_widget(cpu_widget, gruvbox.red),
       tbox_separator,
-      style_widget(mem_widget, gruvbox.orange),
+      style_widget(mem_widget, gruvbox.yellow),
       tbox_separator,
-      style_widget(mykeyboardlayout, gruvbox.red),
+      style_widget(mykeyboardlayout, gruvbox.green),
       tbox_separator,
-      style_widget(volume_widget { widget_type = 'arc' }, gruvbox.aqua),
+      style_widget(volume_widget { widget_type = 'arc' }, gruvbox.orange),
       tbox_separator,
       wibox.widget.systray(),
       tbox_separator,
-      style_widget(mytextclock, gruvbox.green),
+      style_widget(mytextclock, gruvbox.blue),
       tbox_separator,
       logout_popup.widget {
         x = 400,                                       -- distance from left
@@ -394,7 +396,7 @@ globalkeys = gears.table.join(
   -- Prompt
   awful.key({ modkey }, "space", function() awful.util.spawn("rofi -show drun -show-icons") end,
     { description = "run rofi", group = "launcher" }),
-  awful.key({ modkey }, "b", function() awful.util.spawn("firefox") end,
+  awful.key({ modkey }, "b", function() awful.util.spawn("chromium") end,
     { description = "run browser", group = "launcher" }),
   awful.key({ modkey }, "c", function() awful.util.spawn("idea") end,
     { description = "run IntelliJ Idea", group = "launcher" }),
@@ -632,11 +634,11 @@ awful.rules.rules = {
     properties = { titlebars_enabled = false }
   },
 
-  -- Set Firefox to always map on the tag named "2" on screen 1.
-  -- { rule = { class = "Firefox" },
+  -- Set Chromium to always map on the tag named "2" on screen 1.
+  -- { rule = { class = "Chromium" },
   --   properties = { screen = 1, tag = "2" } },
   {
-    rule = { class = "firefox" },
+    rule = { class = "chromium" },
     properties = { tag = "browser" }
   },
 
