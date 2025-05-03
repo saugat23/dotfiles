@@ -17,6 +17,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+local notes_widget = require("widgets.notes")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -281,21 +282,22 @@ awful.screen.connect_for_each_screen(function(s)
       tbox_separator,
       style_widget(volume_widget { widget_type = 'arc' }, gruvbox.orange),
       tbox_separator,
+      style_widget(notes_widget, gruvbox.purple),
+      tbox_separator,
       wibox.widget.systray(),
       tbox_separator,
       style_widget(mytextclock, gruvbox.blue),
-      tbox_separator,
       logout_popup.widget {
         x = 400,                                       -- distance from left
         y = 200,                                       -- distance from top
-        onlock = function() awful.spawn("i3lock") end, -- optional
+        onlock = function() awful.spawn("i3lock-fancy") end, -- optional
         bg_color = "#282828aa",                        -- ⬅️ 80% transparent background (last 2 digits = alpha)
         icon_size = 80,                                -- ⬅️ bigger icons
         font = "JetBrainsMono Nerd Font 16",           -- ⬅️ larger font (customize as per your system)
         button_spacing = 20,                           -- optional spacing between buttons
         hide_timeout = 10
       },
-      s.mylayoutbox,
+      --s.mylayoutbox,
     },
   }
 end)
@@ -312,7 +314,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-  awful.key({ modkey, }, "s", hotkeys_popup.show_help,
+  awful.key({ modkey, }, "h", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
     { description = "view previous", group = "tag" }),
@@ -400,6 +402,12 @@ globalkeys = gears.table.join(
     { description = "run browser", group = "launcher" }),
   awful.key({ modkey }, "c", function() awful.util.spawn("idea") end,
     { description = "run IntelliJ Idea", group = "launcher" }),
+  awful.key({ modkey }, "Print", function() awful.util.spawn("xfce4-screenshooter") end,
+    { description = "Take a screenshot", group = "launcher" }),
+awful.key({ modkey, "s" }, "Print", function() awful.util.spawn('xfce4-screenshooter -f -s "$HOME/Pictures/Screenshots/_$(date +%Y-%m-%d_%H-%M-%S).png') end,
+    { description = "Take a screenshot and save it", group = "launcher" }),
+awful.key({ modkey, "a" }, "Print", function() awful.util.spawn("xfce4-screenshooter -f -c") end,
+    { description = "Take a screenshot and copy it", group = "launcher" }),
   awful.key({ modkey }, "x",
     function()
       awful.prompt.run {
@@ -638,7 +646,7 @@ awful.rules.rules = {
   -- { rule = { class = "Chromium" },
   --   properties = { screen = 1, tag = "2" } },
   {
-    rule = { class = "chromium" },
+    rule = { class = "Chromium" },
     properties = { tag = "browser" }
   },
 
