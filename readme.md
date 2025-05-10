@@ -28,6 +28,7 @@ Feel free to explore the configurations and tweak them to your needs!
 
 - gruvbox-gtk-themes
 - gruvbox-icon-themes
+- dwm
 - kitty
 - alsa-utils
 - aura/yay
@@ -56,7 +57,7 @@ Feel free to explore the configurations and tweak them to your needs!
 - mpc
 - mpd
 - mpv
-- sddm
+- sddm - config(https://github.com/Keyitdev/sddm-astronaut-theme)
 - neovim
 - networkmanager
 - network-manager-applet
