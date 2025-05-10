@@ -23,8 +23,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int stairpx   = 20;       /* depth of the stairs layout */
 static const int stairdirection     = 1;        /* 0: left-aligned, 1: right-aligned */
 static const int stairsamesize      = 1;        /* 1 means shrink all the staired windows to the same size */
-#define ICONSIZE 18   /* icon size */
-#define ICONSPACING 8 /* space between icon and title */
+#define ICONSIZE 22   /* icon size */
+#define ICONSPACING 6 /* space between icon and title */
 static const char *fonts[]          = { "Inter:weight=Medium:size=11:antialias=true:hinting=true" };
 static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray2, col_gray2 },
@@ -33,7 +33,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { " 󰣇 ", " ", " ", " ", " ",""};
+static const char *tags[] = { " 󰣇 ", "  ", "  ", " ", "  ","  ", "  ", "  " };
 
 static const Rule rules[] = {
 	/*       class                instance     title         tags mask     isfloating   monitor */
@@ -67,11 +67,11 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
  static const Layout layouts[] = {
  	/* symbol     arrange function */
+	{ "| [T]",      tile }, 
   { "| 󰓍 ",      stairs },
   { "| @ ",      spiral },
 	{ "| 󰉧 ",      NULL },    
  	{ "| 󰊓 ",      monocle },
- 	{ "| [T]",      tile },    
 	{ "| [\\]",     dwindle },
 	{ "| H[]",      deck },
 	{ "| TTT",      bstack },
