@@ -26,19 +26,15 @@ Feel free to explore the configurations and tweak them to your needs!
 
 ## Packages for my use
 
-- gruvbox-gtk-themes
-- gruvbox-icon-themes
-- dwm
+### Packages in pacman
 - kitty
 - alsa-utils
-- aura/yay
 - base-devel
 - bluez
 - bluez-utils
 - bash
 - bat
 - chromium
-- didyoumean
 - rofi
 - dunst
 - emacs
@@ -48,7 +44,6 @@ Feel free to explore the configurations and tweak them to your needs!
 - git
 - npm
 - htop
-- kvantum-git
 - libxft
 - lolcat
 - lxappearance
@@ -57,7 +52,6 @@ Feel free to explore the configurations and tweak them to your needs!
 - mpc
 - mpd
 - mpv
-- sddm - config(https://github.com/Keyitdev/sddm-astronaut-theme)
 - neovim
 - networkmanager
 - network-manager-applet
@@ -67,7 +61,6 @@ Feel free to explore the configurations and tweak them to your needs!
 - qalculate-gtk
 - qt5ct
 - ripgrep
-- i3lock-fancy
 - starship
 - feh
 - trayer
@@ -95,4 +88,16 @@ Feel free to explore the configurations and tweak them to your needs!
 - yt-dlp
 - zathura
 - zathura-pdf-poppler
+
+### Packages in AUR
+- gruvbox-gtk-themes
+- gruvbox-icon-themes
+- dwm
+- aura/yay
+- kvantum-git
+- sddm-config (sddm-astronaut-theme-git)
+- i3lock-fancy
+
+### Packages not in pacman or AUR
+- didyoumean
 
