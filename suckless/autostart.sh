@@ -11,5 +11,5 @@ nm-applet &
 blueman-applet &
 xfce4-clipman &
 volumeicon &
-xfce4-notee &
+xfce4-notes &
 
