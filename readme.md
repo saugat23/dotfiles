@@ -60,6 +60,7 @@ Feel free to explore the configurations and tweak them to your needs!
 - picom
 - qalculate-gtk
 - qt5ct
+- redshift
 - ripgrep
 - starship
 - feh
