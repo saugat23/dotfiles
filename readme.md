@@ -89,6 +89,7 @@ Feel free to explore the configurations and tweak them to your needs!
 - yt-dlp
 - zathura
 - zathura-pdf-poppler
+- zoxide
 
 ### Packages in AUR
 - gruvbox-gtk-themes
@@ -98,7 +99,4 @@ Feel free to explore the configurations and tweak them to your needs!
 - kvantum-git
 - sddm-config (sddm-astronaut-theme-git)
 - i3lock-fancy
-
-### Packages not in pacman or AUR
-- didyoumean
 
