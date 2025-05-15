@@ -15,7 +15,7 @@ This repository contains my personal configurations for various tools and editor
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/dotfiles.git
+   git clone https://github.com/saugat23/dotfiles.git
 
 2. Symlink or copy the relevant config files to your system.
 
