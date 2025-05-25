@@ -19,7 +19,7 @@ static const unsigned int gappoh    = 10;       /* horiz outer gap between windo
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const unsigned int stairpx   = 20;       /* depth of the stairs layout */
 static const int stairdirection     = 1;        /* 0: left-aligned, 1: right-aligned */
 static const int stairsamesize      = 1;        /* 1 means shrink all the staired windows to the same size */
@@ -88,6 +88,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 /* key definitions */
 #define MODKEY Mod4Mask
+#define MOD2KEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -100,34 +101,26 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 /* commands */
 static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", NULL }; 
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *brupcmd[]  = { "/home/sb23/.config/suckless/dwm/scripts/brightnessnotifications.sh", "up", NULL };
-static const char *brdowncmd[]  = { "/home/sb23/.config/suckless/dwm/scripts/brightnessnotifications.sh", "down", NULL };
-static const char *upvol[]  = { "/home/sb23/.config/suckless/dwm/scripts/volumenotifications.sh", "up", NULL};
-static const char *downvol[]  =  { "/home/sb23/.config/suckless/dwm/scripts/volumenotifications.sh", "down", NULL};
-static const char *mutevol[]  = { "/home/sb23/.config/suckless/dwm/scripts/volumenotifications.sh", "mute", NULL};
-static const char *prevtrack[]  = { "playerctl", "previous", NULL};
-static const char *nexttrack[]  = { "playerctl", "next", NULL};
-static const char *playpausetrack[]  = { "playerctl", "play-pause", NULL};
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *powermenu[] = { "/home/sb23/.config/suckless/dwm/scripts/powermenu.sh", NULL};
 static const char *configscript[] = { "/home/sb23/.config/suckless/dwm/scripts/config.sh", NULL};
 static const char *browserbookmarksscript[] = { "/home/sb23/.config/suckless/dwm/scripts/browserbookmarks.sh", NULL};
 static const char *chromiumcmd[] = {"chromium", NULL };
+static const char *lockcmd[] = {"i3lock-fancy", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key                          function           argument */
 	{ MODKEY,			XK_Return,		     spawn,		{.v = termcmd } },
 	{ MODKEY,                       XK_space,                    spawn,             {.v = roficmd } },
 	{ MODKEY,			XK_b,			     spawn,		{.v = chromiumcmd } },
+	{ MODKEY,			XK_c,			     spawn,		SHCMD("_JAVA_AWT_WM_NONREPARENTING=1 idea") },
+	{ MODKEY,			XK_l,			     spawn,		SHCMD("python3 ~/.local/bin/logout-popup.py") },
 	{ MODKEY|ShiftMask,             XK_b,                        togglebar,         {0} },
-	{ 0,				XF86XK_MonBrightnessUp,      spawn, 	        {.v = brupcmd} },
-	{ 0,				XF86XK_MonBrightnessDown,    spawn,           	{.v = brdowncmd} },
-	{ 0,				XF86XK_AudioLowerVolume,     spawn,           	{.v = downvol} },
-	{ 0,				XF86XK_AudioRaiseVolume,     spawn,           	{.v = upvol} },
-	{ 0,				XF86XK_AudioMute, 	     spawn,           	{.v = mutevol} },
-	{ 0,				XF86XK_AudioPrev,	     spawn,           	{.v = prevtrack} },
-	{ 0,				XF86XK_AudioNext,	     spawn,           	{.v = nexttrack} },
-	{ 0,				XF86XK_AudioPlay,	     spawn,           	{.v = playpausetrack} },
+	{ MOD2KEY,			XK_Up,      		     spawn, 	        SHCMD("/usr/bin/pactl set-sink-volume @DEFAULT_SINK@ +10%") },
+	{ MOD2KEY,			XK_Down,    		     spawn,           	SHCMD("/usr/bin/pactl set-sink-volume @DEFAULT_SINK@ -10%") },
+	{ MOD2KEY,			XK_Right,     		     spawn,           	SHCMD("/usr/bin/brightnessctl set +10%") },
+	{ MOD2KEY,			XK_Left,     		     spawn,           	SHCMD("/usr/bin/brightnessctl set 10%-") },
+	{ MODKEY|ShiftMask,             XK_t,      		     spawn,             SHCMD("~/.dwm/toggle_layout.sh") },
 	{ MODKEY,                       XK_Print,                    spawn,      	{.v = flameshot} },
 	{ MODKEY|ControlMask, 		XK_Delete,		     spawn, 	        {.v = powermenu} },
 	{ MODKEY|ShiftMask,             XK_j,                        rotatestack,       {.i = +1 } },
@@ -136,8 +129,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_k,                        focusstack,        {.i = -1 } },
 	{ MODKEY,                       XK_i,                        incnmaster,        {.i = +1 } },
 	{ MODKEY,                       XK_d,                        incnmaster,        {.i = -1 } },
-	{ MODKEY,                       XK_h,                        setmfact,          {.f = -0.05} },
-	{ MODKEY,                       XK_l,                        setmfact,          {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_h,                        setmfact,          {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_l,                        setmfact,          {.f = +0.05} },
 	{ MODKEY,                       XK_z,                        zoom,              {0} },
 	{ MODKEY,                       XK_Tab,                      view,              {0} },
 	{ MODKEY,                       XK_q,                        killclient,        {0} },
