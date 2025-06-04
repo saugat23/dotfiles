@@ -39,7 +39,8 @@ static const Rule rules[] = {
 	/*       class                instance     title         tags mask     isfloating   monitor */
        {   "kitty",                   NULL,       NULL,          1 << 1,       0,           -1 },
        {   "Chromium",                NULL,       NULL,          1 << 2,       0,           -1 },
-       {   "idea",                    NULL,       NULL,          1 << 3,       0,           -1 },
+       {   "code",                    NULL,       NULL,          1 << 3,       0,           -1 },
+       {   "subl",		      NULL,	  NULL,		 1 << 3,       0,	    -1 },
 };
 
 /* shiftview patch */
